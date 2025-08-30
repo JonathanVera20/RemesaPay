@@ -49,23 +49,22 @@ export default function HomePage() {
                 Solo 0.5% de comisión vs 15% de Western Union.
               </p>
 
-              {/* Trust Badge - More elegant without random letters */}
-              <div className="flex items-center space-x-4 p-6 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl border border-emerald-200 shadow-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <ShieldCheckIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <ClockIcon className="w-5 h-5 text-white" />
-                  </div>
+              {/* Trust Badge */}
+              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-xl border border-green-200">
+                <div className="flex -space-x-2">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-10 h-10 bg-gradient-to-r from-blue-500 to-green-500 rounded-full border-2 border-white flex items-center justify-center text-white font-bold text-sm">
+                      {String.fromCharCode(65 + i)}
+                    </div>
+                  ))}
                 </div>
                 <div>
-                  <p className="font-bold text-emerald-800 text-lg">+50,000 familias conectadas</p>
+                  <p className="font-semibold text-green-800">Confiado por +50,000 familias</p>
                   <div className="flex items-center space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="w-3 h-3 text-amber-500 fill-current" />
+                      <StarIcon key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                     ))}
-                    <span className="text-sm text-emerald-700 ml-2 font-semibold">Calificación perfecta</span>
+                    <span className="text-sm text-green-600 ml-2">4.9/5</span>
                   </div>
                 </div>
               </div>
@@ -73,14 +72,14 @@ export default function HomePage() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/send" className="flex-1">
-                  <button className="w-full bg-gradient-to-r from-slate-600 via-gray-600 to-slate-700 hover:from-slate-700 hover:via-gray-700 hover:to-slate-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base flex items-center justify-center gap-2">
+                  <button className="w-full bg-gradient-to-r from-yellow-400 via-blue-500 to-red-500 hover:from-yellow-500 hover:via-blue-600 hover:to-red-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-lg">
                     Enviar Dinero Ahora
-                    <ArrowRightIcon className="w-4 h-4" />
+                    <ArrowRightIcon className="w-5 h-5 ml-2 inline" />
                   </button>
                 </Link>
                 
                 <Link href="/calculator" className="flex-1">
-                  <button className="w-full text-base px-6 py-3 border-2 border-slate-400 hover:border-slate-600 hover:bg-slate-50 transition-all duration-300 rounded-lg bg-white text-slate-700">
+                  <button className="w-full text-lg px-8 py-4 border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 rounded-lg bg-white text-gray-700">
                     Calcular Ahorro
                   </button>
                 </Link>
@@ -98,63 +97,51 @@ export default function HomePage() {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
-                  className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/30 p-8 hover:shadow-3xl transition-all duration-500"
+                  className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 hover:shadow-2xl transition-all duration-300"
                 >
-                  <div className="text-center mb-8">
-                    <div className="w-14 h-14 bg-gradient-to-br from-slate-500 to-gray-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <CurrencyDollarIcon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Transferencia Rápida</h3>
-                    <p className="text-gray-600">Proceso simplificado</p>
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Vista Previa</h3>
+                    <p className="text-gray-600">Mira qué fácil es</p>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl border border-slate-200">
-                      <span className="text-gray-700 font-medium">Envío</span>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-slate-500 rounded-full animate-pulse"></div>
-                        <span className="text-lg font-bold text-slate-600">Procesando...</span>
-                      </div>
+                    <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                      <span className="text-gray-700">Tú envías</span>
+                      <span className="text-2xl font-bold">$100</span>
                     </div>
                     
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200">
-                      <span className="text-gray-700 font-medium">Comisión</span>
-                      <span className="text-lg font-bold text-emerald-600">Mínima</span>
+                    <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border border-green-200">
+                      <span className="text-green-700">Comisión RemesaPay</span>
+                      <span className="text-xl font-bold text-green-600">$0.50</span>
                     </div>
                     
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-stone-50 to-neutral-50 rounded-xl border border-stone-200">
-                      <span className="text-gray-700 font-medium">Destino</span>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-lg font-bold text-stone-600">Ecuador</span>
-                        <span className="text-lg">🇪🇨</span>
-                      </div>
+                    <div className="flex justify-between items-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <span className="text-blue-700">Familia recibe</span>
+                      <span className="text-2xl font-bold text-blue-600">$100</span>
                     </div>
                     
-                    <div className="text-center p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200">
-                      <div className="flex items-center justify-center space-x-2">
-                        <ClockIcon className="w-4 h-4 text-amber-600" />
-                        <p className="text-sm font-semibold text-amber-700">Entrega instantánea</p>
-                      </div>
+                    <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-red-50 rounded-lg">
+                      <p className="text-sm font-medium text-gray-700">⚡ Llega en 30-60 segundos</p>
                     </div>
                   </div>
                 </motion.div>
 
-                {/* Floating Ecuador Flag - Made smaller and more subtle */}
+                {/* Floating Ecuador Flag */}
                 <motion.div 
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full flex items-center justify-center shadow-lg floating-icon"
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute -top-6 -right-6 w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg"
                 >
-                  <span className="text-sm">🇪🇨</span>
+                  <span className="text-2xl">🇪🇨</span>
                 </motion.div>
                 
-                {/* Floating Check - Made smaller */}
+                {/* Floating Check */}
                 <motion.div 
                   animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -bottom-3 -left-3 w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-500 rounded-full flex items-center justify-center shadow-lg floating-icon"
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute -bottom-4 -left-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
                 >
-                  <CheckCircleIcon className="w-4 h-4 text-white" />
+                  <CheckCircleIcon className="w-6 h-6 text-white" />
                 </motion.div>
               </div>
             </motion.div>
@@ -278,98 +265,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonial Section - More appealing and professional */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-20">
-        <div className="container mx-auto px-6">
+      {/* Testimonial Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-20 text-white">
+        <div className="container mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
           >
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Historias de éxito
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Miles de familias ya confían en RemesaPay para conectar con sus seres queridos
-              </p>
+            <div className="flex justify-center mb-6">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon key={i} className="w-8 h-8 text-yellow-400 fill-current" />
+              ))}
             </div>
-
-            {/* Testimonial Cards Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Testimonial 1 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50"
-              >
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">
-                  "Súper rápido y confiable. Mi familia recibe el dinero al instante."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">M</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">María G.</p>
-                    <p className="text-sm text-gray-500">NYC → Quito</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Testimonial 2 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50"
-              >
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">
-                  "Las comisiones más bajas que he encontrado. Excelente servicio."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">C</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Carlos R.</p>
-                    <p className="text-sm text-gray-500">Miami → Guayaquil</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Testimonial 3 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 md:col-span-2 lg:col-span-1"
-              >
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">
-                  "Seguro y transparente. Ahora es mi forma favorita de enviar dinero."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-stone-500 to-neutral-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">A</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Ana L.</p>
-                    <p className="text-sm text-gray-500">LA → Cuenca</p>
-                  </div>
-                </div>
-              </motion.div>
+            <blockquote className="text-2xl md:text-4xl font-bold mb-8 leading-relaxed">
+              "Envié $200 a mi mamá en Quito y llegó en 30 segundos. ¡Increíble! Ahorré $29 en comisiones."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-4">
+              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center">
+                <span className="text-2xl font-bold text-blue-600">M</span>
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-xl">María González</p>
+                <p className="text-blue-200">Nueva York → Quito</p>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -392,13 +312,13 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <Link href="/send" className="flex-1">
-                <button className="w-full bg-gradient-to-r from-slate-600 via-gray-600 to-slate-700 hover:from-slate-700 hover:via-gray-700 hover:to-slate-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg text-base flex items-center justify-center gap-2">
+                <button className="w-full bg-gradient-to-r from-yellow-400 via-blue-500 to-red-500 hover:from-yellow-500 hover:via-blue-600 hover:to-red-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg text-lg">
                   Empezar Ahora
-                  <ArrowRightIcon className="w-4 h-4" />
+                  <ArrowRightIcon className="w-5 h-5 ml-2 inline" />
                 </button>
               </Link>
               <Link href="/calculator" className="flex-1">
-                <button className="w-full text-base px-6 py-3 border-2 border-slate-400 hover:border-slate-600 hover:bg-slate-50 transition-all duration-300 rounded-lg bg-white text-slate-700">
+                <button className="w-full text-lg px-8 py-4 border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 rounded-lg bg-white text-gray-700">
                   Calcular Ahorro
                 </button>
               </Link>
