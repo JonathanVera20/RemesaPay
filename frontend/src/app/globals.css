@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Ecuador-inspired styles */
+@layer base {
+  :root {
+    --ecuador-yellow: #FFD700;
+    --ecuador-blue: #0077C8;
+    --ecuador-red: #CE1126;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+  }
+  
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-blue-50 via-yellow-50 to-red-50 text-gray-900 font-sans;
+  }
+}
+
+@layer components {
+  .btn-ecuador {
+    @apply bg-gradient-to-r from-yellow-400 via-blue-500 to-red-500 hover:from-yellow-500 hover:via-blue-600 hover:to-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+  
+  .btn-primary {
+    @apply bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .card-ecuador {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 hover:shadow-2xl transition-all duration-300;
+  }
+  
+  .gradient-ecuador {
+    background: linear-gradient(135deg, #FFD700 0%, #0077C8 50%, #CE1126 100%);
+  }
+  
+  .gradient-ecuador-subtle {
+    background: linear-gradient(135deg, #FEF3C7 0%, #DBEAFE 50%, #FEE2E2 100%);
+  }
+  
+  .bg-gradient-ecuador {
+    background: linear-gradient(135deg, #FFD700 0%, #0077C8 100%);
+  }
+  
+  .bg-gradient-ecuador-subtle {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(0, 119, 200, 0.05) 100%);
+  }
+  
+  .text-gradient-ecuador {
+    @apply bg-gradient-to-r from-yellow-600 via-blue-600 to-red-600 bg-clip-text text-transparent font-bold;
+  }
+  
+  .feature-card {
+    @apply bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100;
+  }
+  
+  .input-ecuador {
+    @apply border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-lg px-4 py-3 transition-all duration-300;
+  }
+  
+  .hero-section {
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(0, 119, 200, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 50% 100%, rgba(206, 17, 38, 0.1) 0%, transparent 50%);
+  }
+}

@@ -1,0 +1,54 @@
+MIT License
+
+Copyright (c) 2025 RemesaPay Ecuador
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Additional Terms for RemesaPay Ecuador
+
+### Financial Services Disclaimer
+This software is designed for educational and demonstration purposes. Any use
+in production environments for actual financial transactions must comply with:
+
+1. Local financial regulations in jurisdictions of operation
+2. Anti-Money Laundering (AML) requirements
+3. Know Your Customer (KYC) compliance standards
+4. Ecuador's financial service regulations
+5. United States remittance service regulations
+
+### Ecuador Specific Compliance
+Users in Ecuador must ensure compliance with:
+- Superintendencia de Bancos del Ecuador regulations
+- Foreign exchange control requirements
+- Tax reporting obligations for cross-border transfers
+
+### Smart Contract Auditing
+While comprehensive testing has been performed, users should conduct
+independent security audits before deploying smart contracts to mainnet
+with significant value at risk.
+
+### Support and Community
+For support with this open-source project:
+- GitHub Issues: Report technical issues
+- Email: soporte@remesapay.com
+- Community: Discord and Telegram channels
+
+Built with ❤️ for the Ecuador community
