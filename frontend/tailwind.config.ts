@@ -7,6 +7,28 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    // Ecuador colors and classes
+    'gradient-ecuador',
+    'text-gradient-ecuador',
+    'btn-ecuador',
+    'card-ecuador',
+    'input-ecuador',
+    'bg-gradient-ecuador',
+    
+    // Background colors - generate all variants we need
+    ...['green', 'blue', 'purple', 'red', 'yellow', 'orange'].flatMap(color => [
+      `bg-${color}-50`, `bg-${color}-100`, `bg-${color}-500`, `bg-${color}-600`,
+      `text-${color}-600`, `text-${color}-700`, `text-${color}-800`,
+      `border-${color}-200`, `border-${color}-300`, `border-${color}-500`,
+      `from-${color}-50`, `to-${color}-100`, `from-${color}-500`,
+      `hover:bg-${color}-50`, `hover:border-${color}-500`, `hover:text-${color}-600`
+    ]),
+    
+    // Specific gradients
+    'to-emerald-500', 'to-indigo-700', 'from-emerald-500',
+    'bg-gradient-to-r', 'bg-gradient-to-br', 'bg-clip-text', 'text-transparent'
+  ],
   theme: {
     extend: {
       colors: {
