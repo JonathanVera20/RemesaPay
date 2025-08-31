@@ -226,20 +226,7 @@ Become the leading remittance platform for Latin America, starting with Ecuador'
 
 ---
 
-## 📞 **Support & Contact**
 
-### **Ecuador Support**
-- **Phone**: +593-99-999-9999
-- **Email**: soporte@remesapay.com  
-- **Hours**: 8 AM - 8 PM Ecuador Time (GMT-5)
-- **Language**: Spanish and English support
-
-### **Developer Support**
-- **GitHub Issues**: [Report bugs or request features](../../issues)
-- **Documentation**: [Complete API and integration docs](./docs/)
-- **Community**: [Join our Discord](https://discord.gg/remesapay)
-
----
 
 ## 📄 **License**
 
