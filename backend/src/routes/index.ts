@@ -8,8 +8,8 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 // Route imports
-import remittanceRoutes from './remittance';
-import merchantRoutes from './merchants';
+// import remittanceRoutes from './remittance';
+import userRoutes from './users';
 
 // Service imports
 import logger from '../utils/logger';
@@ -62,7 +62,7 @@ router.use(cors({
 }));
 
 // Compression
-router.use(compression());
+router.use(compression() as any);
 
 // Global rate limiting
 const globalRateLimit = rateLimit({
@@ -89,7 +89,7 @@ const globalRateLimit = rateLimit({
   }
 });
 
-router.use(globalRateLimit);
+router.use(globalRateLimit as any);
 
 // Request logging middleware
 router.use((req, res, next) => {
@@ -221,15 +221,15 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 // Swagger UI
-router.use('/docs', swaggerUi.serve);
+router.use('/docs', swaggerUi.serve as any);
 router.get('/docs', swaggerUi.setup(swaggerSpec, {
   customCss: '.swagger-ui .topbar { display: none }',
   customSiteTitle: 'RemesaPay API Documentation'
-}));
+}) as any);
 
 // API Routes
-router.use('/remittances', remittanceRoutes);
-router.use('/merchants', merchantRoutes);
+// router.use('/remittances', remittanceRoutes);
+router.use('/users', userRoutes);
 
 /**
  * @swagger
@@ -430,12 +430,12 @@ router.get('/status', async (req, res) => {
       }
     });
 
-  } catch (error) {
+  } catch (error: any) {
     logger.error('Status check failed:', error);
     res.status(500).json({
       success: false,
       message: 'Status check failed',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      error: process.env.NODE_ENV === 'development' ? error?.message : undefined
     });
   }
 });
@@ -463,14 +463,15 @@ if (config.app.environment === 'development') {
    */
   router.post('/test', [
     body('message').optional().isString().withMessage('Message must be a string')
-  ], (req: express.Request, res: express.Response) => {
+  ], (req: express.Request, res: express.Response): void => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Validation failed',
         errors: errors.array()
       });
+      return;
     }
 
     res.json({
@@ -500,25 +501,28 @@ router.use((error: any, req: express.Request, res: express.Response, next: expre
 
   // Handle different error types
   if (error.name === 'ValidationError') {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       message: 'Validation error',
       errors: error.details
     });
+    return;
   }
 
   if (error.name === 'UnauthorizedError') {
-    return res.status(401).json({
+    res.status(401).json({
       success: false,
       message: 'Unauthorized access'
     });
+    return;
   }
 
   if (error.type === 'entity.parse.failed') {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       message: 'Invalid JSON in request body'
     });
+    return;
   }
 
   // Default error response

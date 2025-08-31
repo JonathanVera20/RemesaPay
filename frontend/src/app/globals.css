@@ -2,56 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Professional business styling */
-body {
-  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%) !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif !important;
-  color: #1E293B !important;
-  min-height: 100vh !important;
-  line-height: 1.6 !important;
-}
-
-/* Reset problematic sizing */
-* {
-  box-sizing: border-box !important;
-}
-
-/* Professional color palette - Subtle and refined */
+/* Professional Modern Design System */
 @layer base {
+  body {
+    background: #FAFAFA;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+    color: #18181B;
+    min-height: 100vh;
+    line-height: 1.6;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+
+  /* Professional color palette - Minimal and sophisticated */
   :root {
-    --primary-slate: #334155;
-    --primary-gray: #64748B;
-    --accent-sage: #6B7280;
-    --neutral-light: #F8FAFC;
-    --neutral-dark: #1E293B;
-    --success-muted: #10B981;
+    /* Primary colors - Deep professional blue */
+    --primary-50: #EFF6FF;
+    --primary-100: #DBEAFE;
+    --primary-500: #3B82F6;
+    --primary-600: #2563EB;
+    --primary-700: #1D4ED8;
+    --primary-900: #1E3A8A;
+    
+    /* Neutral colors - Sophisticated grays */
+    --neutral-50: #FAFAFA;
+    --neutral-100: #F4F4F5;
+    --neutral-200: #E4E4E7;
+    --neutral-300: #D4D4D8;
+    --neutral-400: #A1A1AA;
+    --neutral-500: #71717A;
+    --neutral-600: #52525B;
+    --neutral-700: #3F3F46;
+    --neutral-800: #27272A;
+    --neutral-900: #18181B;
+    
+    /* Accent colors */
+    --success-500: #10B981;
+    --success-600: #059669;
+    --warning-500: #F59E0B;
+    --error-500: #EF4444;
+    
+    /* Background & surfaces */
     --background: #FFFFFF;
-    --foreground: #1E293B;
+    --surface: #FFFFFF;
+    --surface-secondary: #F9FAFB;
   }
 }
 
 @layer components {
-  /* Container and layout fixes */
-  .container {
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 0 1.5rem !important;
+  /* Professional component styles */
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
   }
   
-  /* Section spacing - More compact and professional */
-  section {
-    padding: 3rem 0 !important;
-    margin: 0 !important;
+  .btn-secondary {
+    @apply bg-white border border-neutral-300 hover:border-neutral-400 text-neutral-700 hover:text-neutral-900 font-semibold py-3 px-6 rounded-lg transition-all duration-200;
   }
   
-  /* Responsive spacing adjustments */
-  @media (min-width: 768px) {
-    section {
-      padding: 4rem 0 !important;
-    }
+  .card {
+    @apply bg-white border border-neutral-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200;
   }
   
-  @media (min-width: 1024px) {
+  .input-field {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent;
+  }
+  
+  .container-app {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Status indicators */
+  .status-success {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800;
+  }
+  
+  .status-pending {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800;
+  }
+  
+  .status-error {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .min-h-screen-safe {
+    min-height: 100dvh;
+  }
+}
+
+@media (min-width: 1024px) {
     section {
       padding: 5rem 0 !important;
     }
@@ -288,7 +336,6 @@ body {
       radial-gradient(circle at 40% 40%, rgba(217, 119, 6, 0.03) 0%, transparent 50%) !important;
     padding: 5rem 0 !important;
   }
-}
 
 /* Override Tailwind classes with professional colors */
 .bg-gradient-to-r {
@@ -517,4 +564,67 @@ body {
 
 .text-gray-600 {
   color: #4B5563 !important;
+}
+
+/* ConnectKit Modal Text Fix - Ultra Specific Targeting */
+[data-ck-theme] {
+  --ck-body-color: #1f2937 !important;
+  --ck-body-color-muted: #6b7280 !important;
+  --ck-body-color-muted-hover: #374151 !important;
+}
+
+/* Force ALL text to be visible - Maximum specificity */
+div[data-ck-modal] * {
+  color: #1f2937 !important;
+}
+
+div[data-ck-modal] h1,
+div[data-ck-modal] h2,
+div[data-ck-modal] h3,
+div[data-ck-modal] h4,
+div[data-ck-modal] h5,
+div[data-ck-modal] h6,
+div[data-ck-modal] p,
+div[data-ck-modal] span,
+div[data-ck-modal] div,
+div[data-ck-modal] button,
+div[data-ck-modal] a {
+  color: #1f2937 !important;
+}
+
+/* Wallet buttons specifically */
+div[data-ck-modal] button[data-ck-wallet-option] {
+  color: #1f2937 !important;
+  background: #ffffff !important;
+}
+
+div[data-ck-modal] button[data-ck-wallet-option] * {
+  color: #1f2937 !important;
+}
+
+/* Alternative approach - target by class names that might exist */
+.ck-modal * {
+  color: #1f2937 !important;
+}
+
+.ck-wallet-option * {
+  color: #1f2937 !important;
+}
+
+/* Nuclear option - force ALL elements in any modal-like container */
+[role="dialog"] *,
+[data-headlessui-state] *,
+div[style*="position: fixed"] * {
+  color: #1f2937 !important;
+}
+
+/* Also target by common modal class patterns */
+.modal * {
+  color: #1f2937 !important;
+}
+
+/* Connect button specific targeting */
+div[data-ck-modal] button span {
+  color: #2563eb !important;
+  font-weight: 600 !important;
 }

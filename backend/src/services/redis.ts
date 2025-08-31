@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import config from './config';
+import config from '../config/config';
 import logger from '../utils/logger';
 
 class RedisService {
@@ -12,7 +12,6 @@ class RedisService {
       port: this.parseRedisUrl(config.redis.url).port,
       password: config.redis.password,
       db: config.redis.db,
-      retryDelayOnFailover: 100,
       maxRetriesPerRequest: 3,
       lazyConnect: true,
     });

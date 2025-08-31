@@ -8,14 +8,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Simple user model
+// Simple user model for phone-to-wallet mapping
 model User {
   id            String   @id @default(cuid())
   phoneNumber   String   @unique @map("phone_number")
-  walletAddress String?  @map("wallet_address")
+  walletAddress String   @map("wallet_address") // Required for receiving payments
   firstName     String?  @map("first_name")
   lastName      String?  @map("last_name")
   email         String?  @unique
+  countryCode   String   @map("country_code") // +1, +52, +57, etc.
+  country       String?  // USA, Mexico, Colombia, etc.
   isActive      Boolean  @default(true) @map("is_active")
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
@@ -59,11 +61,13 @@ model Merchant {
   id              String   @id @default(cuid())
   businessName    String   @map("business_name")
   phone           String   @unique
+  countryCode     String   @map("country_code") // +1, +52, +57, etc.
   email           String?  @unique
   address         String
   city            String
+  country         String
   isActive        Boolean  @default(true) @map("is_active")
-  walletAddress   String?  @map("wallet_address")
+  walletAddress   String   @map("wallet_address") // Required for receiving payments
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
 

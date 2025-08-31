@@ -7,7 +7,11 @@ import {
   ClockIcon, 
   ShieldCheckIcon,
   CheckCircleIcon,
-  StarIcon
+  StarIcon,
+  GlobeAltIcon,
+  BanknotesIcon,
+  LockClosedIcon,
+  ChartBarIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
@@ -16,8 +20,8 @@ export default function HomePage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-yellow-50 to-red-50 py-20">
-        <div className="container mx-auto px-6">
+      <section className="relative bg-gradient-to-br from-neutral-50 via-white to-blue-50 py-24">
+        <div className="container-app">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -25,47 +29,49 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Ecuador Flag Badge */}
+              {/* Trust Badge */}
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-8 h-6 bg-gradient-to-r from-yellow-400 via-blue-500 to-red-500 rounded-sm shadow-sm"></div>
-                <span className="text-lg font-semibold text-gray-700">Para mi familia en Ecuador</span>
+                <div className="w-8 h-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-sm shadow-sm flex items-center justify-center">
+                  <GlobeAltIcon className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-lg font-semibold text-neutral-700">Global Money Transfers</span>
               </div>
               
               {/* Main Headline */}
               <div className="space-y-4">
-                <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
-                  <span className="bg-gradient-to-r from-yellow-600 via-blue-600 to-red-600 bg-clip-text text-transparent">
-                    Envía dinero a Ecuador
+                <h1 className="text-5xl md:text-7xl font-bold text-neutral-900 leading-tight">
+                  <span className="text-gradient">
+                    Send Money Fast
                   </span>
                 </h1>
-                <h2 className="text-3xl md:text-5xl font-bold text-gray-700">
-                  en segundos, no días
+                <h2 className="text-3xl md:text-5xl font-bold text-neutral-700">
+                  Anywhere, Anytime
                 </h2>
               </div>
               
               {/* Description */}
-              <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                La forma más rápida y económica de enviar dinero a tu familia en Ecuador. 
-                Solo 0.5% de comisión vs 15% de Western Union.
+              <p className="text-xl text-neutral-600 leading-relaxed max-w-lg">
+                The fastest and most affordable way to send money globally. 
+                Only 0.5% fees vs 15% traditional services.
               </p>
 
-              {/* Trust Badge - More elegant without random letters */}
-              <div className="flex items-center space-x-4 p-6 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl border border-emerald-200 shadow-sm">
+              {/* Trust Badge */}
+              <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl border border-green-200 shadow-lg">
                 <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
                     <ShieldCheckIcon className="w-5 h-5 text-white" />
                   </div>
-                  <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                     <ClockIcon className="w-5 h-5 text-white" />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-emerald-800 text-lg">+50,000 familias conectadas</p>
+                  <p className="font-bold text-green-800 text-lg">Families Connected</p>
                   <div className="flex items-center space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <StarIcon key={i} className="w-3 h-3 text-amber-500 fill-current" />
                     ))}
-                    <span className="text-sm text-emerald-700 ml-2 font-semibold">Calificación perfecta</span>
+                    <span className="text-sm text-green-700 ml-2 font-semibold">Perfect Rating</span>
                   </div>
                 </div>
               </div>
@@ -73,15 +79,15 @@ export default function HomePage() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/send" className="flex-1">
-                  <button className="w-full bg-gradient-to-r from-slate-600 via-gray-600 to-slate-700 hover:from-slate-700 hover:via-gray-700 hover:to-slate-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base flex items-center justify-center gap-2">
-                    Enviar Dinero Ahora
+                  <button className="btn-primary w-full flex items-center justify-center gap-2">
+                    Send Money Now
                     <ArrowRightIcon className="w-4 h-4" />
                   </button>
                 </Link>
                 
                 <Link href="/calculator" className="flex-1">
-                  <button className="w-full text-base px-6 py-3 border-2 border-slate-400 hover:border-slate-600 hover:bg-slate-50 transition-all duration-300 rounded-lg bg-white text-slate-700">
-                    Calcular Ahorro
+                  <button className="btn-secondary w-full">
+                    Calculate Savings
                   </button>
                 </Link>
               </div>
@@ -98,61 +104,46 @@ export default function HomePage() {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
-                  className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/30 p-8 hover:shadow-3xl transition-all duration-500"
+                  className="card p-8 hover:shadow-xl transition-all duration-500"
                 >
                   <div className="text-center mb-8">
-                    <div className="w-14 h-14 bg-gradient-to-br from-slate-500 to-gray-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <CurrencyDollarIcon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Transferencia Rápida</h3>
-                    <p className="text-gray-600">Proceso simplificado</p>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-2">Instant Transfer</h3>
+                    <p className="text-neutral-600">Simplified Process</p>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl border border-slate-200">
-                      <span className="text-gray-700 font-medium">Envío</span>
+                    <div className="flex justify-between items-center p-4 bg-green-50 rounded-xl border border-green-200">
+                      <span className="text-neutral-700 font-medium">Fee</span>
+                      <span className="text-lg font-bold text-green-600">Minimal</span>
+                    </div>
+                    
+                    <div className="flex justify-between items-center p-4 bg-neutral-50 rounded-xl border border-neutral-200">
+                      <span className="text-neutral-700 font-medium">Destination</span>
                       <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-slate-500 rounded-full animate-pulse"></div>
-                        <span className="text-lg font-bold text-slate-600">Procesando...</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200">
-                      <span className="text-gray-700 font-medium">Comisión</span>
-                      <span className="text-lg font-bold text-emerald-600">Mínima</span>
-                    </div>
-                    
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-stone-50 to-neutral-50 rounded-xl border border-stone-200">
-                      <span className="text-gray-700 font-medium">Destino</span>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-lg font-bold text-stone-600">Ecuador</span>
-                        <span className="text-lg">🇪🇨</span>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200">
-                      <div className="flex items-center justify-center space-x-2">
-                        <ClockIcon className="w-4 h-4 text-amber-600" />
-                        <p className="text-sm font-semibold text-amber-700">Entrega instantánea</p>
+                        <span className="text-lg font-bold text-neutral-600">Global</span>
+                        <GlobeAltIcon className="w-5 h-5 text-neutral-500" />
                       </div>
                     </div>
                   </div>
                 </motion.div>
 
-                {/* Floating Ecuador Flag - Made smaller and more subtle */}
+                {/* Floating Globe Icon */}
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full flex items-center justify-center shadow-lg floating-icon"
+                  className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg z-10"
                 >
-                  <span className="text-sm">🇪🇨</span>
+                  <GlobeAltIcon className="w-5 h-5 text-white" />
                 </motion.div>
                 
-                {/* Floating Check - Made smaller */}
+                {/* Floating Check */}
                 <motion.div 
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -bottom-3 -left-3 w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-500 rounded-full flex items-center justify-center shadow-lg floating-icon"
+                  className="absolute -bottom-2 -left-2 w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg z-10"
                 >
                   <CheckCircleIcon className="w-4 h-4 text-white" />
                 </motion.div>
@@ -164,7 +155,7 @@ export default function HomePage() {
 
       {/* Stats Section */}
       <section className="bg-white py-20">
-        <div className="container mx-auto px-6">
+        <div className="container-app">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -176,8 +167,8 @@ export default function HomePage() {
               <div className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
                 0.5%
               </div>
-              <div className="text-lg font-semibold text-gray-700">
-                Comisión Ultra Baja
+              <div className="text-lg font-semibold text-neutral-700">
+                Ultra Low Fees
               </div>
             </motion.div>
             
@@ -191,8 +182,8 @@ export default function HomePage() {
               <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-4">
                 {"<60s"}
               </div>
-              <div className="text-lg font-semibold text-gray-700">
-                Transferencia Instantánea
+              <div className="text-lg font-semibold text-neutral-700">
+                Instant Transfer
               </div>
             </motion.div>
             
@@ -206,8 +197,8 @@ export default function HomePage() {
               <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-4">
                 $500M+
               </div>
-              <div className="text-lg font-semibold text-gray-700">
-                Ahorrado en Comisiones
+              <div className="text-lg font-semibold text-neutral-700">
+                Saved in Fees
               </div>
             </motion.div>
           </div>
@@ -215,17 +206,17 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-gradient-to-br from-neutral-50 to-blue-50">
+        <div className="container-app">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">¿Por qué elegir RemesaPay?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              La plataforma más avanzada para envíos de dinero a Ecuador
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">Why Choose RemesaPay?</h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              The most advanced platform for global money transfers
             </p>
           </motion.div>
           
@@ -236,13 +227,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0 * 0.2 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="p-8 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 border border-green-200 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="card p-8"
             >
               <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
-                <CurrencyDollarIcon className="w-8 h-8" />
+                <BanknotesIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Comisiones Ultra Bajas</h3>
-              <p className="text-gray-600 leading-relaxed">Solo 0.5% vs 10-15% de servicios tradicionales</p>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Ultra Low Fees</h3>
+              <p className="text-neutral-600 leading-relaxed">Only 0.5% vs 10-15% traditional services</p>
             </motion.div>
 
             {/* Feature 2 */}
@@ -251,13 +242,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 * 0.2 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="card p-8"
             >
               <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
                 <ClockIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Transferencias Instantáneas</h3>
-              <p className="text-gray-600 leading-relaxed">Tu familia recibe el dinero en menos de 60 segundos</p>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Instant Transfers</h3>
+              <p className="text-neutral-600 leading-relaxed">Your money arrives in less than 60 seconds</p>
             </motion.div>
 
             {/* Feature 3 */}
@@ -266,140 +257,105 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 2 * 0.2 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="card p-8"
             >
               <div className="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
-                <ShieldCheckIcon className="w-8 h-8" />
+                <LockClosedIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Máxima Seguridad</h3>
-              <p className="text-gray-600 leading-relaxed">Protegido por blockchain y smart contracts auditados</p>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Maximum Security</h3>
+              <p className="text-neutral-600 leading-relaxed">Protected by blockchain and audited smart contracts</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Testimonial Section - More appealing and professional */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-20">
-        <div className="container mx-auto px-6">
+      {/* How It Works Section */}
+      <section className="bg-white py-20">
+        <div className="container-app">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto"
+            className="text-center mb-16"
           >
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Historias de éxito
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Miles de familias ya confían en RemesaPay para conectar con sus seres queridos
-              </p>
-            </div>
-
-            {/* Testimonial Cards Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Testimonial 1 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50"
-              >
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">
-                  "Súper rápido y confiable. Mi familia recibe el dinero al instante."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">M</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">María G.</p>
-                    <p className="text-sm text-gray-500">NYC → Quito</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Testimonial 2 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50"
-              >
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">
-                  "Las comisiones más bajas que he encontrado. Excelente servicio."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">C</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Carlos R.</p>
-                    <p className="text-sm text-gray-500">Miami → Guayaquil</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Testimonial 3 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 md:col-span-2 lg:col-span-1"
-              >
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">
-                  "Seguro y transparente. Ahora es mi forma favorita de enviar dinero."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-stone-500 to-neutral-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">A</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Ana L.</p>
-                    <p className="text-sm text-gray-500">LA → Cuenca</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+              Send money globally in three simple steps
+            </p>
           </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Step 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className="text-center"
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <span className="text-white text-2xl font-bold">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Enter Amount</h3>
+              <p className="text-neutral-600">Choose how much you want to send and select your recipient</p>
+            </motion.div>
+
+            {/* Step 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <span className="text-white text-2xl font-bold">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Confirm Transfer</h3>
+              <p className="text-neutral-600">Review details and confirm your transaction securely</p>
+            </motion.div>
+
+            {/* Step 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <span className="text-white text-2xl font-bold">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Money Delivered</h3>
+              <p className="text-neutral-600">Recipient receives funds instantly via digital wallet</p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 text-center">
+      {/* CTA Section */}
+      <section className="bg-gradient-to-br from-blue-600 to-blue-700 py-20">
+        <div className="container-app">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto"
+            transition={{ duration: 0.8 }}
+            className="text-center text-white"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              ¿Listo para enviar dinero?
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Send Money?
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Únete a miles de familias que ya confían en RemesaPay
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Join thousands of users who save money on every transfer
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <Link href="/send" className="flex-1">
-                <button className="w-full bg-gradient-to-r from-slate-600 via-gray-600 to-slate-700 hover:from-slate-700 hover:via-gray-700 hover:to-slate-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg text-base flex items-center justify-center gap-2">
-                  Empezar Ahora
-                  <ArrowRightIcon className="w-4 h-4" />
+                <button className="w-full bg-neutral-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-neutral-700 shadow-lg hover:shadow-xl">
+                  Start Sending
                 </button>
               </Link>
-              <Link href="/calculator" className="flex-1">
-                <button className="w-full text-base px-6 py-3 border-2 border-slate-400 hover:border-slate-600 hover:bg-slate-50 transition-all duration-300 rounded-lg bg-white text-slate-700">
-                  Calcular Ahorro
+              <Link href="/test-transaction" className="flex-1">
+                <button className="w-full border-2 border-white text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-white/10">
+                  Test Transaction
                 </button>
               </Link>
             </div>

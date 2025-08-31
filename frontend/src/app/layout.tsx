@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from 'react-hot-toast';
+import { Web3Provider } from '@/components/Web3Provider';
 
 export const metadata: Metadata = {
   title: 'RemesaPay - Instant Blockchain Remittances to Ecuador',
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans">
+        <Web3Provider>
           {children}
           <Toaster
             position="top-right"
@@ -73,6 +75,7 @@ export default function RootLayout({
               },
             }}
           />
+        </Web3Provider>
       </body>
     </html>
   );

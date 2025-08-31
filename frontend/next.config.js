@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -20,6 +17,34 @@ const nextConfig = {
       'assets.coingecko.com',
       'raw.githubusercontent.com',
     ],
+  },
+  webpack: (config, { isServer }) => {
+    // Handle Web3 libraries that don't work with SSR
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        stream: false,
+        url: false,
+        zlib: false,
+        http: false,
+        https: false,
+        assert: false,
+        os: false,
+        path: false,
+        punycode: false,
+      };
+    }
+    
+    // Ignore certain modules during server-side builds
+    if (isServer) {
+      config.externals.push('pino-pretty', 'lokijs', 'encoding');
+    }
+    
+    return config;
   },
   webpack: (config) => {
     config.resolve.fallback = { fs: false, net: false, tls: false };

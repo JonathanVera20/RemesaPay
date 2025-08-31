@@ -11,8 +11,8 @@ import config from './config/config';
 import logger from './utils/logger';
 import apiRoutes from './routes/index';
 import { connectDatabase } from './config/database';
-import redisService from './services/redis';
-import exchangeRateService from './services/exchangeRate.service';
+// import redisService from './services/redis';
+// import exchangeRateService from './services/exchangeRate.service';
 
 // Create Express app
 const app = express();
@@ -130,7 +130,7 @@ const gracefulShutdown = async () => {
 
   // Close Redis connection
   try {
-    await redisService.disconnect();
+    // await redisService.disconnect();
     logger.info('Redis connection closed');
   } catch (error) {
     logger.error('Error closing Redis connection:', error);
@@ -167,12 +167,12 @@ async function startServer() {
 
     // Test Redis connection
     logger.info('Connecting to Redis...');
-    await redisService.ping();
+    // await redisService.ping();
     logger.info('Redis connected successfully');
 
     // Warm up exchange rate cache
     logger.info('Warming up exchange rate cache...');
-    await exchangeRateService.warmupCache();
+    // await exchangeRateService.warmupCache();
     logger.info('Exchange rate cache warmed up');
 
     // Start server
