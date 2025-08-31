@@ -1,10 +1,10 @@
 import { createConfig } from 'wagmi';
-import { base, baseSepolia, hardhat } from 'wagmi/chains';
+import { base, baseSepolia, sepolia, hardhat } from 'wagmi/chains';
 import { coinbaseWallet, metaMask, walletConnect } from 'wagmi/connectors';
 import { http } from 'viem';
 
-// Define the chains we support
-export const supportedChains = [base, baseSepolia, hardhat] as const;
+// Define the chains we support (including Ethereum Sepolia for SepoliaETH)
+export const supportedChains = [sepolia, baseSepolia, base, hardhat] as const;
 
 // WalletConnect Project ID (you'll need to get this from https://cloud.walletconnect.com/)
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo-project-id';
@@ -37,6 +37,7 @@ export const wagmiConfig = createConfig({
     // }),
   ],
   transports: {
+    [sepolia.id]: http(),
     [base.id]: http(),
     [baseSepolia.id]: http(),
     [hardhat.id]: http('http://127.0.0.1:8545'),
@@ -46,6 +47,11 @@ export const wagmiConfig = createConfig({
 
 // Contract addresses for different networks
 export const contractAddresses = {
+  [sepolia.id]: {
+    remesaPay: '0x0000000000000000000000000000000000000000', // Deploy here for Ethereum Sepolia
+    usdc: '0x0000000000000000000000000000000000000000', // No official USDC on Ethereum Sepolia
+    usdt: '0x0000000000000000000000000000000000000000',
+  },
   [base.id]: {
     remesaPay: '0x0000000000000000000000000000000000000000', // Will be updated after deployment
     usdc: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
@@ -53,7 +59,7 @@ export const contractAddresses = {
   },
   [baseSepolia.id]: {
     remesaPay: '0x0000000000000000000000000000000000000000', // Will be updated after deployment
-    usdc: '0xF175520C52418dfE19C8098071a252da48Cd1C19',
+    usdc: '0x036CbD53842c5426634e7929541eC2318f3dCF7e', // Official Base Sepolia USDC
     usdt: '0x0000000000000000000000000000000000000000',
   },
   [hardhat.id]: {
@@ -65,10 +71,23 @@ export const contractAddresses = {
 
 // Token configurations
 export const supportedTokens = {
+  ETH: {
+    symbol: 'ETH',
+    name: 'Ethereum',
+    decimals: 18,
+    isNative: true, // Native token (no contract address needed)
+    addresses: {
+      [sepolia.id]: '0x0000000000000000000000000000000000000000', // Native ETH on Ethereum Sepolia
+      [base.id]: '0x0000000000000000000000000000000000000000', // Native ETH
+      [baseSepolia.id]: '0x0000000000000000000000000000000000000000', // Native ETH
+      [hardhat.id]: '0x0000000000000000000000000000000000000000', // Native ETH
+    },
+  },
   USDC: {
     symbol: 'USDC',
     name: 'USD Coin',
     decimals: 6,
+    isNative: false,
     addresses: {
       [base.id]: contractAddresses[base.id].usdc,
       [baseSepolia.id]: contractAddresses[baseSepolia.id].usdc,
@@ -79,6 +98,7 @@ export const supportedTokens = {
     symbol: 'USDT',
     name: 'Tether USD',
     decimals: 6,
+    isNative: false,
     addresses: {
       [base.id]: contractAddresses[base.id].usdt,
       [baseSepolia.id]: contractAddresses[baseSepolia.id].usdt,
@@ -99,6 +119,16 @@ export const remesaPayABI = [
     "name": "sendRemittance",
     "outputs": [{ "name": "remittanceId", "type": "uint256" }],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "name": "phoneHash", "type": "bytes32" },
+      { "name": "ensSubdomain", "type": "string" }
+    ],
+    "name": "sendRemittanceETH",
+    "outputs": [{ "name": "remittanceId", "type": "uint256" }],
+    "stateMutability": "payable",
     "type": "function"
   },
   {

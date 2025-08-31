@@ -301,14 +301,18 @@ export default function CalculatorPage() {
 
                   {/* Savings Highlight */}
                   <motion.div 
-                    className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-8 rounded-2xl shadow-xl text-center"
+                    className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-8 rounded-2xl shadow-xl text-center relative overflow-hidden"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <h3 className="text-2xl font-bold mb-4">🎉 ¡Tu Ahorro Total!</h3>
-                    <div className="text-5xl font-bold mb-2">${savings.toFixed(2)}</div>
-                    <p className="text-lg opacity-90">Ahorras {((savings / (amountNum + westernFee)) * 100).toFixed(1)}% del costo total</p>
-                    <p className="text-sm opacity-75 mt-2">+ 3-5 días más rápido</p>
+                    {/* Dark overlay for better text readability */}
+                    <div className="absolute inset-0 bg-black bg-opacity-20 rounded-2xl"></div>
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold mb-4 text-white drop-shadow-lg">🎉 ¡Tu Ahorro Total!</h3>
+                      <div className="text-5xl font-bold mb-2 text-white drop-shadow-lg">${savings.toFixed(2)}</div>
+                      <p className="text-lg text-white drop-shadow-md">Ahorras {((savings / (amountNum + westernFee)) * 100).toFixed(1)}% del costo total</p>
+                      <p className="text-sm text-white drop-shadow-md mt-2">+ 3-5 días más rápido</p>
+                    </div>
                   </motion.div>
                 </div>
               </div>

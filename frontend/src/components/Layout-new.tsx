@@ -9,8 +9,6 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useAccount, useDisconnect } from 'wagmi';
-import { WalletConnectionModal } from './WalletConnectionModal';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,17 +17,19 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isSpanish, setIsSpanish] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
-  const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
+  const [connectedWallet, setConnectedWallet] = useState<string | null>(null);
+
+  const handleWalletConnect = (address: string) => {
+    setConnectedWallet(address);
+  };
 
   const navigation = [
-    { name: 'Inicio', href: '/' },
-    { name: 'Enviar Dinero', href: '/send' },
-    { name: 'Calculadora', href: '/calculator' },
-    { name: 'Cómo Funciona', href: '/how-it-works' },
-    { name: 'Transacción de Prueba', href: '/test-transaction' },
-    { name: 'Soporte', href: '/support' }
+    { name: 'Home', href: '/' },
+    { name: 'Send Money', href: '/send' },
+    { name: 'Calculator', href: '/calculator' },
+    { name: 'How It Works', href: '/how-it-works' },
+    { name: 'Test Transaction', href: '/test-transaction' },
+    { name: 'Support', href: '/support' }
   ];
 
   return (
@@ -82,29 +82,9 @@ export default function Layout({ children }: LayoutProps) {
             {/* Controls */}
             <div className="flex items-center space-x-4">
               {/* Connect Wallet Button */}
-              {isConnected ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="text-sm font-medium text-green-800">
-                      {address?.slice(0, 6)}...{address?.slice(-4)}
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => disconnect()}
-                    className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors"
-                  >
-                    Desconectar
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={() => setShowWalletModal(true)}
-                  className="btn-primary text-sm px-4 py-2 flex items-center space-x-2"
-                >
-                  <span>Conectar Billetera</span>
-                </button>
-              )}
+              <button className="btn-primary text-sm px-4 py-2">
+                Connect Wallet
+              </button>
               
               {/* Mobile Menu Button */}
               <button
@@ -159,34 +139,34 @@ export default function Layout({ children }: LayoutProps) {
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-gradient">RemesaPay</h3>
               <p className="text-neutral-400 leading-relaxed">
-                La forma más rápida y segura de enviar dinero a nivel mundial.
+                The fastest and most secure way to send money globally.
               </p>
             </div>
             
             <div className="space-y-4">
-              <h4 className="font-semibold text-white">Producto</h4>
+              <h4 className="font-semibold text-white">Product</h4>
               <div className="space-y-2">
-                <Link href="/send" className="block text-neutral-400 hover:text-white transition-colors">Enviar Dinero</Link>
-                <Link href="/calculator" className="block text-neutral-400 hover:text-white transition-colors">Calculadora</Link>
-                <Link href="/test-transaction" className="block text-neutral-400 hover:text-white transition-colors">Transacción de Prueba</Link>
+                <Link href="/send" className="block text-neutral-400 hover:text-white transition-colors">Send Money</Link>
+                <Link href="/calculator" className="block text-neutral-400 hover:text-white transition-colors">Calculator</Link>
+                <Link href="/test-transaction" className="block text-neutral-400 hover:text-white transition-colors">Test Transaction</Link>
               </div>
             </div>
             
             <div className="space-y-4">
-              <h4 className="font-semibold text-white">Soporte</h4>
+              <h4 className="font-semibold text-white">Support</h4>
               <div className="space-y-2">
-                <Link href="/how-it-works" className="block text-neutral-400 hover:text-white transition-colors">Cómo Funciona</Link>
-                <Link href="/support" className="block text-neutral-400 hover:text-white transition-colors">Centro de Ayuda</Link>
-                <Link href="/contact" className="block text-neutral-400 hover:text-white transition-colors">Contáctanos</Link>
+                <Link href="/how-it-works" className="block text-neutral-400 hover:text-white transition-colors">How It Works</Link>
+                <Link href="/support" className="block text-neutral-400 hover:text-white transition-colors">Help Center</Link>
+                <Link href="/contact" className="block text-neutral-400 hover:text-white transition-colors">Contact Us</Link>
               </div>
             </div>
             
             <div className="space-y-4">
               <h4 className="font-semibold text-white">Legal</h4>
               <div className="space-y-2">
-                <Link href="/privacy" className="block text-neutral-400 hover:text-white transition-colors">Política de Privacidad</Link>
-                <Link href="/terms" className="block text-neutral-400 hover:text-white transition-colors">Términos de Servicio</Link>
-                <Link href="/security" className="block text-neutral-400 hover:text-white transition-colors">Seguridad</Link>
+                <Link href="/privacy" className="block text-neutral-400 hover:text-white transition-colors">Privacy Policy</Link>
+                <Link href="/terms" className="block text-neutral-400 hover:text-white transition-colors">Terms of Service</Link>
+                <Link href="/security" className="block text-neutral-400 hover:text-white transition-colors">Security</Link>
               </div>
             </div>
           </div>
@@ -194,23 +174,17 @@ export default function Layout({ children }: LayoutProps) {
           <div className="border-t border-neutral-700 mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-neutral-400">
-                © 2024 RemesaPay. Todos los derechos reservados.
+                © 2024 RemesaPay. All rights reserved.
               </p>
-              {isConnected && address && (
+              {connectedWallet && (
                 <div className="text-sm text-neutral-400">
-                  Conectado: {address.slice(0, 6)}...{address.slice(-4)}
+                  Connected: {connectedWallet.slice(0, 6)}...{connectedWallet.slice(-4)}
                 </div>
               )}
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Wallet Connection Modal */}
-      <WalletConnectionModal 
-        isOpen={showWalletModal} 
-        onClose={() => setShowWalletModal(false)} 
-      />
     </div>
   );
 }

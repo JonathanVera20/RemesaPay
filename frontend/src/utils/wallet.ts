@@ -52,8 +52,8 @@ export const checkNetwork = async () => {
     const chainId = await ethereum.request({ method: 'eth_chainId' });
     console.log('Current chain ID:', chainId);
     
-    // Check if on supported network (Base, Base Sepolia, or local)
-    const supportedChains = ['0x2105', '0x14a34', '0x7a69']; // Base, Base Sepolia, Hardhat
+    // Check if on supported network (Base Sepolia priority, Base, or local)
+    const supportedChains = ['0x14a34', '0x2105', '0x7a69']; // Base Sepolia (84532), Base (8453), Hardhat (31337)
     return supportedChains.includes(chainId);
   } catch (error) {
     console.error('Error checking network:', error);

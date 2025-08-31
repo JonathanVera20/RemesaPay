@@ -143,15 +143,15 @@ interface Config {
 
 const config: Config = {
   // Server
-  port: parseInt(process.env.PORT || '3001', 10),
+  port: parseInt(process.env.PORT || '3002', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
   apiVersion: process.env.API_VERSION || 'v1',
   
   // App
   app: {
-    port: parseInt(process.env.PORT || '3001', 10),
+    port: parseInt(process.env.PORT || '3002', 10),
     environment: process.env.NODE_ENV || 'development',
-    baseUrl: process.env.BASE_URL || 'http://localhost:3001',
+    baseUrl: process.env.BASE_URL || 'http://localhost:3002',
     frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3005',
   },
   

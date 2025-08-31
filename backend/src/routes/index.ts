@@ -8,7 +8,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 // Route imports
-// import remittanceRoutes from './remittance';
+import remittanceRoutes from './remittance';
 import userRoutes from './users';
 
 // Service imports
@@ -228,7 +228,7 @@ router.get('/docs', swaggerUi.setup(swaggerSpec, {
 }) as any);
 
 // API Routes
-// router.use('/remittances', remittanceRoutes);
+router.use('/remittance', remittanceRoutes);
 router.use('/users', userRoutes);
 
 /**

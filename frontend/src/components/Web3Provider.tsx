@@ -34,7 +34,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
             mode="light"
             options={{
               embedGoogleFonts: true,
-              initialChainId: 0,
+              initialChainId: 84532, // Base Sepolia Chain ID
               enforceSupportedChains: true,
               walletConnectCTA: 'both',
             }}

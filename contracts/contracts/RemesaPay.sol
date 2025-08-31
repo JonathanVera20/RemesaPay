@@ -270,6 +270,71 @@ contract RemesaPay is
     }
 
     /**
+     * @dev Send ETH remittance
+     * @param _phoneHash Hash of recipient's phone number
+     * @param _ensSubdomain Optional ENS subdomain for recipient
+     */
+    function sendRemittanceETH(
+        bytes32 _phoneHash,
+        string calldata _ensSubdomain
+    ) external payable nonReentrant whenNotPaused {
+        require(msg.value > 0, "Amount must be greater than 0");
+        require(msg.value >= 0.001 ether, "Amount too small"); // 0.001 ETH minimum
+        require(msg.value <= 10 ether, "Amount too large"); // 10 ETH maximum
+        require(!userStats[msg.sender].isBlacklisted, "Sender blacklisted");
+        require(_phoneHash != bytes32(0), "Invalid phone hash");
+
+        uint256 _amount = msg.value;
+
+        // Check daily limits (convert ETH to USD equivalent for limit checking)
+        // For simplicity, we'll use a 1:1000 ETH:USD ratio for limit checking
+        // In production, you'd want to use an oracle
+        uint256 usdEquivalent = _amount * 2000 / 1 ether; // Assuming ~$2000 per ETH
+        _updateAndCheckDailyLimit(msg.sender, usdEquivalent);
+
+        // Calculate fees
+        uint256 fee = (_amount * PROTOCOL_FEE_BASIS_POINTS) / BASIS_POINTS_DENOMINATOR;
+        uint256 netAmount = _amount - fee;
+
+        // Check if this is a large amount requiring time lock
+        bool isLargeAmount = usdEquivalent >= LARGE_AMOUNT_THRESHOLD;
+        uint256 unlockTime = isLargeAmount ? block.timestamp + TIME_LOCK_DURATION : block.timestamp;
+
+        // Transfer fee to treasury
+        (bool success, ) = treasury.call{value: fee}("");
+        require(success, "Fee transfer failed");
+
+        // Create remittance record (using zero address for ETH)
+        uint256 remittanceId = remittanceCounter++;
+        remittances[remittanceId] = Remittance({
+            sender: msg.sender,
+            phoneHash: _phoneHash,
+            token: address(0), // Use zero address for ETH
+            amount: _amount,
+            fee: fee,
+            netAmount: netAmount,
+            timestamp: block.timestamp,
+            unlockTime: unlockTime,
+            isClaimed: false,
+            isLargeAmount: isLargeAmount,
+            ensSubdomain: _ensSubdomain
+        });
+
+        // Update sender stats
+        userStats[msg.sender].totalSent += usdEquivalent;
+
+        emit RemittanceSent(
+            remittanceId,
+            msg.sender,
+            _phoneHash,
+            address(0), // ETH represented as zero address
+            _amount,
+            fee,
+            _ensSubdomain
+        );
+    }
+
+    /**
      * @dev Claim remittance (called by merchant on behalf of recipient)
      * @param _remittanceId Remittance ID to claim
      * @param _recipient Recipient address
@@ -301,8 +366,15 @@ contract RemesaPay is
         // Mark as claimed
         remittance.isClaimed = true;
 
-        // Transfer tokens to merchant
-        IERC20(remittance.token).safeTransfer(msg.sender, remittance.netAmount);
+        // Transfer tokens/ETH to merchant
+        if (remittance.token == address(0)) {
+            // ETH transfer
+            (bool success, ) = msg.sender.call{value: remittance.netAmount}("");
+            require(success, "ETH transfer failed");
+        } else {
+            // ERC20 token transfer
+            IERC20(remittance.token).safeTransfer(msg.sender, remittance.netAmount);
+        }
 
         // Update stats
         userStats[_recipient].totalReceived += remittance.netAmount;

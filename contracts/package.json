@@ -14,6 +14,7 @@
     "deploy:optimism-testnet": "hardhat run scripts/deploy.ts --network optimismTestnet",
     "deploy:base": "hardhat run scripts/deploy.ts --network base",
     "deploy:optimism": "hardhat run scripts/deploy.ts --network optimism",
+    "deploy:mock-usdc": "hardhat run scripts/deploy-mock-usdc.ts --network baseTestnet",
     "verify:base": "hardhat verify --network base",
     "verify:optimism": "hardhat verify --network optimism",
     "lint": "solhint 'contracts/**/*.sol'",

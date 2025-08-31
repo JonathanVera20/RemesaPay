@@ -29,24 +29,24 @@ export function WalletConnectionModal({ isOpen, onClose }: WalletConnectionModal
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             // If successful, connect via wagmi
             await connect({ connector });
-            toast.success('MetaMask connected successfully!');
+            toast.success('¡MetaMask conectado exitosamente!');
             onClose();
           } catch (error: any) {
             if (error.code === 4001) {
-              toast.error('Connection rejected by user');
+              toast.error('Conexión rechazada por el usuario');
             } else {
-              toast.error('Failed to connect to MetaMask');
+              toast.error('Error al conectar con MetaMask');
             }
           }
         } else {
           // MetaMask not installed, redirect to install page
           window.open('https://metamask.io/download/', '_blank');
-          toast.error('Please install MetaMask extension first');
+          toast.error('Por favor instala la extensión MetaMask primero');
         }
       } else {
         // For other wallets, use normal connection
         await connect({ connector });
-        toast.success(`${connector.name} connected successfully!`);
+        toast.success(`¡${connector.name} conectado exitosamente!`);
         onClose();
       }
     } catch (error: any) {
@@ -79,7 +79,7 @@ export function WalletConnectionModal({ isOpen, onClose }: WalletConnectionModal
           >
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-black">Connect Wallet</h2>
+              <h2 className="text-2xl font-bold text-black">Conectar Billetera</h2>
               <button
                 onClick={onClose}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -118,10 +118,10 @@ export function WalletConnectionModal({ isOpen, onClose }: WalletConnectionModal
                       </p>
                     )}
                     {connector.name.toLowerCase().includes('coinbase') && (
-                      <p className="text-sm text-gray-600">Browser extension or mobile</p>
+                      <p className="text-sm text-gray-600">Extensión de navegador o móvil</p>
                     )}
                     {connector.name.toLowerCase().includes('walletconnect') && (
-                      <p className="text-sm text-gray-600">Mobile wallets</p>
+                      <p className="text-sm text-gray-600">Billeteras móviles</p>
                     )}
                   </div>
 
@@ -131,9 +131,9 @@ export function WalletConnectionModal({ isOpen, onClose }: WalletConnectionModal
                   ) : (
                     <div className="text-blue-600">
                       {connector.name.toLowerCase().includes('metamask') && !isMetaMaskInstalled ? (
-                        <span className="text-xs">Install</span>
+                        <span className="text-xs">Instalar</span>
                       ) : (
-                        <span className="text-xs">Connect</span>
+                        <span className="text-xs">Conectar</span>
                       )}
                     </div>
                   )}
@@ -144,13 +144,13 @@ export function WalletConnectionModal({ isOpen, onClose }: WalletConnectionModal
             {/* MetaMask Special Instructions */}
             {connectors.some(c => c.name.toLowerCase().includes('metamask')) && (
               <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-200">
-                <h3 className="font-semibold text-orange-800 mb-2">💡 MetaMask Tips:</h3>
+                <h3 className="font-semibold text-orange-800 mb-2">💡 Consejos para MetaMask:</h3>
                 <ul className="text-sm text-orange-700 space-y-1">
-                  <li>• Click MetaMask above to open extension directly</li>
-                  <li>• Make sure you're on the correct network (Base)</li>
-                  <li>• Have some ETH for gas fees</li>
+                  <li>• Haz clic en MetaMask arriba para abrir la extensión directamente</li>
+                  <li>• Asegúrate de estar en la red correcta (Base)</li>
+                  <li>• Ten algo de ETH para las comisiones de gas</li>
                   {!isMetaMaskInstalled && (
-                    <li>• <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer" className="underline text-orange-700">Install MetaMask extension first</a></li>
+                    <li>• <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer" className="underline text-orange-700">Instala la extensión MetaMask primero</a></li>
                   )}
                 </ul>
               </div>
@@ -159,7 +159,7 @@ export function WalletConnectionModal({ isOpen, onClose }: WalletConnectionModal
             {/* Footer */}
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                New to wallets? <a href="https://ethereum.org/en/wallets/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Learn more</a>
+                ¿Nuevo en billeteras? <a href="https://ethereum.org/en/wallets/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Aprende más</a>
               </p>
             </div>
           </motion.div>

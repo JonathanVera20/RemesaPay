@@ -26,7 +26,7 @@ async function main() {
     },
     // Base Testnet (Sepolia)
     baseTestnet: {
-      usdc: "0xF175520C52418dfE19C8098071a252da48Cd1C19",
+      usdc: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // Official Base Sepolia USDC
       usdt: "0x0000000000000000000000000000000000000000", // No USDT on testnet
       treasury: deployer.address, // Use deployer as treasury on testnet
       admin: deployer.address // Use deployer as admin on testnet

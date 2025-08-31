@@ -41,22 +41,22 @@ export default function HomePage() {
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-7xl font-bold text-neutral-900 leading-tight">
                   <span className="text-gradient">
-                    Envía Dinero Rápido
+                    Send Money Fast
                   </span>
                 </h1>
                 <h2 className="text-3xl md:text-5xl font-bold text-neutral-700">
-                  A Cualquier Lugar, Cuando Quieras
+                  Anywhere, Anytime
                 </h2>
               </div>
               
               {/* Description */}
               <p className="text-xl text-neutral-600 leading-relaxed max-w-lg">
-                La forma más rápida y económica de enviar dinero a nivel mundial. 
-                Solo 0.5% de comisión vs 15% de servicios tradicionales.
+                The fastest and most affordable way to send money globally. 
+                Only 0.5% fees vs 15% traditional services.
               </p>
 
               {/* Trust Badge */}
-              <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl border border-green-200 shadow-lg">
+              <div className="flex items-center space-x-4 p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-2xl border border-green-200 shadow-sm">
                 <div className="flex items-center space-x-2">
                   <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
                     <ShieldCheckIcon className="w-5 h-5 text-white" />
@@ -66,12 +66,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-green-800 text-lg">Familias Conectadas</p>
+                  <p className="font-bold text-green-800 text-lg">50,000+ Families Connected</p>
                   <div className="flex items-center space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <StarIcon key={i} className="w-3 h-3 text-amber-500 fill-current" />
                     ))}
-                    <span className="text-sm text-green-700 ml-2 font-semibold">Calificación Perfecta</span>
+                    <span className="text-sm text-green-700 ml-2 font-semibold">Perfect Rating</span>
                   </div>
                 </div>
               </div>
@@ -80,14 +80,14 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/send" className="flex-1">
                   <button className="btn-primary w-full flex items-center justify-center gap-2">
-                    Enviar Dinero Ahora
+                    Send Money Now
                     <ArrowRightIcon className="w-4 h-4" />
                   </button>
                 </Link>
                 
                 <Link href="/calculator" className="flex-1">
                   <button className="btn-secondary w-full">
-                    Calcular Ahorros
+                    Calculate Savings
                   </button>
                 </Link>
               </div>
@@ -110,21 +110,36 @@ export default function HomePage() {
                     <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <CurrencyDollarIcon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-2">Transferencia Instantánea</h3>
-                    <p className="text-neutral-600">Proceso Simplificado</p>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-2">Instant Transfer</h3>
+                    <p className="text-neutral-600">Simplified Process</p>
                   </div>
                   
                   <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-neutral-50 rounded-xl border border-neutral-200">
+                      <span className="text-neutral-700 font-medium">Sending</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                        <span className="text-lg font-bold text-blue-600">Processing...</span>
+                      </div>
+                    </div>
+                    
                     <div className="flex justify-between items-center p-4 bg-green-50 rounded-xl border border-green-200">
-                      <span className="text-neutral-700 font-medium">Comisión</span>
-                      <span className="text-lg font-bold text-green-600">Mínima</span>
+                      <span className="text-neutral-700 font-medium">Fee</span>
+                      <span className="text-lg font-bold text-green-600">Minimal</span>
                     </div>
                     
                     <div className="flex justify-between items-center p-4 bg-neutral-50 rounded-xl border border-neutral-200">
-                      <span className="text-neutral-700 font-medium">Destino</span>
+                      <span className="text-neutral-700 font-medium">Destination</span>
                       <div className="flex items-center space-x-2">
                         <span className="text-lg font-bold text-neutral-600">Global</span>
                         <GlobeAltIcon className="w-5 h-5 text-neutral-500" />
+                      </div>
+                    </div>
+                    
+                    <div className="text-center p-4 bg-blue-50 rounded-xl border border-blue-200">
+                      <div className="flex items-center justify-center space-x-2">
+                        <ClockIcon className="w-4 h-4 text-blue-600" />
+                        <p className="text-sm font-semibold text-blue-700">Instant Delivery</p>
                       </div>
                     </div>
                   </div>
@@ -134,7 +149,7 @@ export default function HomePage() {
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg z-10"
+                  className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <GlobeAltIcon className="w-5 h-5 text-white" />
                 </motion.div>
@@ -143,7 +158,7 @@ export default function HomePage() {
                 <motion.div 
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -bottom-2 -left-2 w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg z-10"
+                  className="absolute -bottom-3 -left-3 w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <CheckCircleIcon className="w-4 h-4 text-white" />
                 </motion.div>
@@ -168,7 +183,7 @@ export default function HomePage() {
                 0.5%
               </div>
               <div className="text-lg font-semibold text-neutral-700">
-                Comisiones Ultra Bajas
+                Ultra Low Fees
               </div>
             </motion.div>
             
@@ -183,7 +198,7 @@ export default function HomePage() {
                 {"<60s"}
               </div>
               <div className="text-lg font-semibold text-neutral-700">
-                Transferencia Instantánea
+                Instant Transfer
               </div>
             </motion.div>
             
@@ -198,7 +213,7 @@ export default function HomePage() {
                 $500M+
               </div>
               <div className="text-lg font-semibold text-neutral-700">
-                Ahorrado en Comisiones
+                Saved in Fees
               </div>
             </motion.div>
           </div>
@@ -214,9 +229,9 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">¿Por Qué Elegir RemesaPay?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">Why Choose RemesaPay?</h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              La plataforma más avanzada para transferencias globales de dinero
+              The most advanced platform for global money transfers
             </p>
           </motion.div>
           
@@ -232,8 +247,8 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
                 <BanknotesIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Comisiones Ultra Bajas</h3>
-              <p className="text-neutral-600 leading-relaxed">Solo 0.5% vs 10-15% de servicios tradicionales</p>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Ultra Low Fees</h3>
+              <p className="text-neutral-600 leading-relaxed">Only 0.5% vs 10-15% traditional services</p>
             </motion.div>
 
             {/* Feature 2 */}
@@ -247,8 +262,8 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
                 <ClockIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Transferencias Instantáneas</h3>
-              <p className="text-neutral-600 leading-relaxed">Tu dinero llega en menos de 60 segundos</p>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Instant Transfers</h3>
+              <p className="text-neutral-600 leading-relaxed">Your money arrives in less than 60 seconds</p>
             </motion.div>
 
             {/* Feature 3 */}
@@ -262,8 +277,8 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
                 <LockClosedIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Máxima Seguridad</h3>
-              <p className="text-neutral-600 leading-relaxed">Protegido por blockchain y contratos inteligentes auditados</p>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Maximum Security</h3>
+              <p className="text-neutral-600 leading-relaxed">Protected by blockchain and audited smart contracts</p>
             </motion.div>
           </div>
         </div>
@@ -279,10 +294,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">
-              Cómo Funciona
+              How It Works
             </h2>
             <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-              Envía dinero a nivel mundial en tres pasos simples
+              Send money globally in three simple steps
             </p>
           </motion.div>
 
@@ -297,8 +312,8 @@ export default function HomePage() {
               <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <span className="text-white text-2xl font-bold">1</span>
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">Ingresa el Monto</h3>
-              <p className="text-neutral-600">Elige cuánto quieres enviar y selecciona tu destinatario</p>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Enter Amount</h3>
+              <p className="text-neutral-600">Choose how much you want to send and select your recipient</p>
             </motion.div>
 
             {/* Step 2 */}
@@ -311,8 +326,8 @@ export default function HomePage() {
               <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <span className="text-white text-2xl font-bold">2</span>
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">Confirma la Transferencia</h3>
-              <p className="text-neutral-600">Revisa los detalles y confirma tu transacción de forma segura</p>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Confirm Transfer</h3>
+              <p className="text-neutral-600">Review details and confirm your transaction securely</p>
             </motion.div>
 
             {/* Step 3 */}
@@ -325,8 +340,8 @@ export default function HomePage() {
               <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <span className="text-white text-2xl font-bold">3</span>
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">Dinero Entregado</h3>
-              <p className="text-neutral-600">El destinatario recibe los fondos instantáneamente vía billetera digital</p>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Money Delivered</h3>
+              <p className="text-neutral-600">Recipient receives funds instantly via digital wallet</p>
             </motion.div>
           </div>
         </div>
@@ -342,20 +357,20 @@ export default function HomePage() {
             className="text-center text-white"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              ¿Listo para Enviar Dinero?
+              Ready to Send Money?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Únete a miles de usuarios que ahorran dinero en cada transferencia
+              Join thousands of users who save money on every transfer
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <Link href="/send" className="flex-1">
-                <button className="w-full bg-neutral-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-neutral-700 shadow-lg hover:shadow-xl">
-                  Comenzar a Enviar
+                <button className="w-full bg-white text-blue-600 font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-neutral-50 shadow-lg hover:shadow-xl">
+                  Start Sending
                 </button>
               </Link>
               <Link href="/test-transaction" className="flex-1">
                 <button className="w-full border-2 border-white text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-white/10">
-                  Transacción de Prueba
+                  Test Transaction
                 </button>
               </Link>
             </div>

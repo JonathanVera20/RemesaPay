@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 export interface SendRemittanceParams {
   phoneNumber: string;
-  token: 'USDC' | 'USDT';
+  token: 'ETH' | 'USDC' | 'USDT';
   amount: string;
   ensSubdomain?: string;
 }
@@ -116,7 +116,7 @@ export function useRemesaPay() {
       });
 
       setTxHash(hash);
-      toast.success('Approval transaction sent!');
+      toast.success('¡Transacción de aprobación enviada!');
       return true;
     } catch (error: any) {
       console.error('Approval error:', error);
@@ -140,22 +140,37 @@ export function useRemesaPay() {
       
       // Validate amount
       const amountFloat = parseFloat(amount);
-      if (amountFloat < 10 || amountFloat > 10000) {
-        toast.error('Amount must be between $10 and $10,000');
+      const minAmount = token === 'ETH' ? 0.001 : 10;
+      if (amountFloat < minAmount || amountFloat > 10000) {
+        toast.error(`Amount must be between ${minAmount} and 10,000 ${token}`);
         return null;
       }
 
       const tokenConfig = supportedTokens[token];
-      const tokenAddress = tokenConfig.addresses[chainId as keyof typeof tokenConfig.addresses];
       const phoneHash = hashPhoneNumber(phoneNumber);
       const { amount: amountBN } = calculateFee(amount, tokenConfig.decimals);
 
-      const hash = await writeContract({
-        address: getContractAddress('remesaPay') as `0x${string}`,
-        abi: remesaPayABI,
-        functionName: 'sendRemittance',
-        args: [phoneHash, tokenAddress as `0x${string}`, amountBN, ensSubdomain],
-      });
+      let hash: string;
+
+      if (token === 'ETH') {
+        // For ETH transfers, use native ETH value
+        hash = await writeContract({
+          address: getContractAddress('remesaPay') as `0x${string}`,
+          abi: remesaPayABI,
+          functionName: 'sendRemittanceETH',
+          args: [phoneHash, ensSubdomain],
+          value: amountBN,
+        });
+      } else {
+        // For ERC20 tokens
+        const tokenAddress = tokenConfig.addresses[chainId as keyof typeof tokenConfig.addresses];
+        hash = await writeContract({
+          address: getContractAddress('remesaPay') as `0x${string}`,
+          abi: remesaPayABI,
+          functionName: 'sendRemittance',
+          args: [phoneHash, tokenAddress as `0x${string}`, amountBN, ensSubdomain],
+        });
+      }
 
       setTxHash(hash);
       
@@ -173,7 +188,7 @@ export function useRemesaPay() {
         // Don't fail the transaction if backend is unavailable
       }
 
-      toast.success('Remittance sent successfully!');
+      toast.success('¡Remesa enviada exitosamente!');
       return hash;
     } catch (error: any) {
       console.error('Send remittance error:', error);
@@ -202,7 +217,7 @@ export function useRemesaPay() {
       });
 
       setTxHash(hash);
-      toast.success('Remittance claimed successfully!');
+      toast.success('¡Remesa reclamada exitosamente!');
       return hash;
     } catch (error: any) {
       console.error('Claim remittance error:', error);
